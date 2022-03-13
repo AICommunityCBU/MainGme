@@ -8,6 +8,7 @@ public class NewBehaviourScript : MonoBehaviour
     public GameObject obj;
     public GameObject obj1;
     //mugivara luffy
+    //MuratBozulmus
     void Start()
     {
         
