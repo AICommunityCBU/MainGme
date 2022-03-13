@@ -8,6 +8,7 @@ public class ad : MonoBehaviour
     //hello world
     //Emre cakmak
     //Captain Tusubasa Ozora Gozoro
+    //Yukarý Assa
     void Start()
     {
         
