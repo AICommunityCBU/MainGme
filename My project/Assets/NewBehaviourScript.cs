@@ -7,7 +7,6 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     public GameObject obj;
     public GameObject obj1;
-    //mugivara luffy
     void Start()
     {
         
