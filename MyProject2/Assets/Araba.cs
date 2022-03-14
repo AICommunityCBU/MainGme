@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Araba : MonoBehaviour
+public class araba : MonoBehaviour
 {
-
-
-    private void Update()
+    // Start is called before the first frame update
+    void Start()
     {
-        Movement();
+        
     }
-    public void Movement()
-    {
 
+    // Update is called once per frame
+    void Update()
+    {
+            //araba durdu
     }
 }
