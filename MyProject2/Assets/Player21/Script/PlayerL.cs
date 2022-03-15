@@ -59,8 +59,8 @@ public class PlayerL : MonoBehaviour
     {
         if((iswallSlide||istouchWall)&& chcont.grounded)
         {
-            chcont._rigidbody2D.AddForce(new Vector2(walljumpforce * walljampDirecion * walljumpAngle.x, walljumpforce * walljumpAngle.y), ForceMode2D.Impulse);
-            chcont.jumps = false;
+          //  chcont._rigidbody2D.AddForce(new Vector2(walljumpforce * walljampDirecion * walljumpAngle.x, walljumpforce * walljumpAngle.y), ForceMode2D.Impulse);
+           // chcont.jumps = false;
         }
 
     }

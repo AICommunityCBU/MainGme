@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class CharacterControl : MonoBehaviour
 {
-
+   
+    [SerializeField] Transform groundChackPoint;
+    [SerializeField] Vector2 groundChackSize;
+    [SerializeField] LayerMask groundlayer;
     [SerializeField] LayerMask walllayer;
     [SerializeField] Transform wallChackPoint;
     [SerializeField] Vector2 wallChackSize;
@@ -14,7 +17,7 @@ public class CharacterControl : MonoBehaviour
 
 
 
-
+    public float walljumpxforce;
     public float walljumpforce = 15f;
     public float walljampDirecion = -1f;
     [SerializeField] Vector2 walljumpAngle;
@@ -24,9 +27,10 @@ public class CharacterControl : MonoBehaviour
     public float jumpForce=5;
     public float spead=5;
     private bool saðbakk = true;
+    public float walljumptime;
 
-    public bool jumps;
-    public bool grounded=true;
+    public bool walljumps;
+    public bool grounded;
     private bool movings;
     public Rigidbody2D _rigidbody2D;
     private Animator anim;
@@ -54,41 +58,38 @@ public class CharacterControl : MonoBehaviour
         {
             movings = false;
         }
-        _rigidbody2D.velocity = new Vector2(spead * movepoint, _rigidbody2D.velocity.y);
-        if (jumps == true)
-        {
-            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpForce);
-            jumps = false;
-        }
+        _rigidbody2D.velocity = new Vector2(spead * xDirection, _rigidbody2D.velocity.y);
     }
     // Update is called once per frame
     void Update()
     {
 
-        chackWall();
+        chackWorld();
         wallslide();
-        walljumpss();
+
+
+
 
 
 
         xDirection = Input.GetAxis("Horizontal");
-            if (Input.GetKey(KeyCode.A))
-            {
-                movepoint = -1.0f;
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                movepoint = 1.0f;
-            }
-            else if (grounded == true)
-            {
-                movepoint = 0.0f;
-            
 
-        }if(grounded==true && (Input.GetKey(KeyCode.W)))
+        if (Input.GetKey(KeyCode.W) && grounded == true)
         {
-            jumps = true;
-            grounded = false;
+            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpForce);
+            Debug.Log("groundJUMP");
+            
+        }
+        if (Input.GetKey(KeyCode.W) && iswallSlide == true||istouchWall==true)
+        {
+            walljumps = true;
+            
+        }
+        if (walljumps == true&& Input.GetKey(KeyCode.W))
+        {
+            _rigidbody2D.velocity = new Vector2(100, walljumpforce);
+            walljumps = false;
+            Debug.Log("girdi");
         }
         if (xDirection < 0 && saðbakk)
         {
@@ -98,6 +99,7 @@ public class CharacterControl : MonoBehaviour
         {
             flip();
         }
+       
     }
 
     public void flip()
@@ -108,23 +110,14 @@ public class CharacterControl : MonoBehaviour
 
     }
 
-    public void walljumpss()
+   
+    void setwalljumptofalse()
     {
-        if ((iswallSlide || istouchWall) && !grounded)
-          
-        {
-            grounded = true;
-            _rigidbody2D.AddForce(new Vector2(walljumpforce * walljampDirecion * walljumpAngle.x, walljumpforce * walljumpAngle.y), ForceMode2D.Impulse);
-            jumps = false;
-           
-
-        }
-
+        walljumps = false;
     }
-
     public void wallslide()
     {
-        if (istouchWall && !grounded && _rigidbody2D.velocity.y < 0)
+        if (istouchWall && grounded==false && _rigidbody2D.velocity.y < 0)
         {
             iswallSlide = true;
         }
@@ -140,17 +133,19 @@ public class CharacterControl : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("zemin"))
-        {
-            grounded = true;
-        }
-    }
-    public void chackWall()
+    
+    public void chackWorld()
     {
         istouchWall = (Physics2D.OverlapBox(wallChackPoint.position, wallChackSize, 0, walllayer));
+        grounded= (Physics2D.OverlapBox(groundChackPoint.position, groundChackSize, 0, groundlayer));
 
 
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(groundChackPoint.position, groundChackSize);
+        Gizmos.color = Color.green;
+        Gizmos.DrawCube(wallChackPoint.position, wallChackSize);
     }
 }
