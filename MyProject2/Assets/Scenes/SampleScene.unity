@@ -133,9 +133,9 @@ GameObject:
   m_Component:
   - component: {fileID: 133007000}
   - component: {fileID: 133006999}
-  - component: {fileID: 133006998}
   - component: {fileID: 133006997}
   - component: {fileID: 133007001}
+  - component: {fileID: 133006998}
   m_Layer: 0
   m_Name: herochar_idle_anim_strip_4_0
   m_TagString: Untagged
@@ -164,8 +164,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &133006998
-BoxCollider2D:
+--- !u!70 &133006998
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -177,19 +177,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.006269155, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.11, y: 0.15}
-    newSize: {x: 0.11, y: 0.15}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.097461686, y: 0.15}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.6850075, y: 0}
+  m_Size: {x: 2.809988, y: 6.7100005}
+  m_Direction: 0
 --- !u!212 &133006999
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -230,7 +220,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4099418257374492983, guid: df0ec8883a934bf40850b70f41cfd04a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0bc6d2a2ee5d18e4b919a1e0c0e7f71f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -249,8 +239,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133006996}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.1984, y: -1.674, z: 0}
-  m_LocalScale: {x: 5.271657, y: 5.2423, z: 5.2423}
+  m_LocalPosition: {x: -5.573, y: -1.6848, z: 0}
+  m_LocalScale: {x: 0.15497367, y: 0.117359765, z: 0.11273515}
   m_Children:
   - {fileID: 303766623}
   - {fileID: 1863393053}
@@ -269,21 +259,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4329048d59bc7724bba01b01d038fc2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundChackPoint: {fileID: 1863393053}
+  groundChackSize: {x: 0.5, y: 0.05}
+  groundlayer:
+    serializedVersion: 2
+    m_Bits: 64
   walllayer:
     serializedVersion: 2
     m_Bits: 128
   wallChackPoint: {fileID: 303766623}
-  wallChackSize: {x: 0.05, y: 1}
+  wallChackSize: {x: 0.05, y: 0.7}
   wallslideSPEED: -2
   istouchWall: 0
   iswallSlide: 0
+  walljumpxforce: 100
   walljumpforce: 5
   walljampDirecion: -1
   walljumpAngle: {x: 1, y: 3}
   xDirection: 0
   jumpForce: 5
   spead: 5
-  jumps: 0
+  walljumptime: 0.2
+  walljumps: 0
   grounded: 1
   _rigidbody2D: {fileID: 0}
 --- !u!1 &303766622
@@ -311,7 +308,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303766622}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0419, y: 0.0102, z: 0}
+  m_LocalPosition: {x: 1.87, y: -0.04, z: 0}
   m_LocalScale: {x: 0.035908125, y: 0.035908125, z: 0.035908125}
   m_Children: []
   m_Father: {fileID: 133007000}
@@ -488,7 +485,7 @@ GameObject:
   - component: {fileID: 487613210}
   - component: {fileID: 487613209}
   - component: {fileID: 487613208}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: tileset_64x64(new)_26 (1)
   m_TagString: zemin
   m_Icon: {fileID: 0}
@@ -680,7 +677,7 @@ GameObject:
   - component: {fileID: 1335062354}
   - component: {fileID: 1335062353}
   - component: {fileID: 1335062352}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: tileset_64x64(new)_26
   m_TagString: zemin
   m_Icon: {fileID: 0}
@@ -803,7 +800,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863393052}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.002, y: -0.06, z: 0}
+  m_LocalPosition: {x: 1.01, y: -3.33, z: 0}
   m_LocalScale: {x: 0.035908125, y: 0.035908125, z: 0.035908125}
   m_Children: []
   m_Father: {fileID: 133007000}
